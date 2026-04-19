@@ -1,9 +1,9 @@
 # Đồ án Khai thác dữ liệu và ứng dụng — Lab 1
 
-## 📋 Mô tả dự án
+## Mô tả dự án
 
 Đồ án này là phần thực hành Lab 1 của môn **Khai thác dữ liệu và ứng dụng**. Mục tiêu chính:
-- **Khám phá dữ liệu (EDA)** cho cả dữ liệu ảnh (image) và dữ liệu bảng (tabular).
+- **Khám phá dữ liệu (EDA)** cho cả dữ liệu ảnh (image), dữ liệu bảng (tabular) và dữ liệu thời gian.
 - **Tiền xử lý dữ liệu** (preprocessing) để chuẩn bị cho các phân tích hoặc mô hình tiếp theo.
 - **Trực quan hoá** các phát hiện quan trọng từ dữ liệu.
 
@@ -15,6 +15,9 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
 
 ```
 .
+├── data/
+│   ├── raw/                            # Thư mục để các notebooks tải dữ liệu thô
+│   └── processed/                      # Thư mục để lưu các dữ liệu đã qua tiền xử lí
 ├── docs/
 │   └── Report.pdf                      # Báo cáo chi tiết của đồ án
 ├── notebooks/
@@ -23,7 +26,8 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
 │   ├── 03_EDA_tabular.ipynb            # Khám phá dữ liệu bảng
 │   ├── 04_preprocessing_tabular.ipynb  # Tiền xử lý dữ liệu bảng
 │   └── 06_temporal_preprocessing.ipynb # Tiền xử lý dữ liệu thời gian
-└── README.md                           # Tài liệu này
+├── README.md                           # Tài liệu này
+└── requirements.txt                    # Cụ thể version của các thư viện
 ```
 
 ---
@@ -48,7 +52,7 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
 **Lý do khuyến nghị:**
 - Dataset ảnh có kích thước lớn và yêu cầu tài nguyên cao (RAM, CPU/GPU).
 - Colab cung cấp runtime mạnh (GPU/TPU miễn phí) và tích hợp Google Drive để lưu trữ dữ liệu.
-- Không cần cài đặt phần mềm cục bộ.
+- Không cần cài đặt thư viện cục bộ.
 
 **Các bước:**
 
@@ -60,26 +64,7 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
    - Nhấp chuột phải vào file `.ipynb` → Mở với → Google Colaboratory
    - Hoặc: File → Open notebook → chọn từ Drive
 
-3. **Mount Google Drive** (nếu dữ liệu nằm trên Drive):
-   ```python
-   from google.colab import drive
-   drive.mount('/content/drive')
-   ```
-   - Chạy ô này ở đầu notebook để mount Drive.
-
-4. **Cài đặt phụ thuộc** (nếu cần):
-   ```python
-   !pip install numpy pandas matplotlib seaborn scikit-learn
-   ```
-   - Hoặc các thư viện khác được sử dụng trong notebook.
-
-5. **Cập nhật đường dẫn dữ liệu:**
-   - Sửa đường dẫn trong notebook để trỏ đến vị trí dữ liệu trên Drive (thường là `/content/drive/My Drive/...`).
-
-6. **Chọn runtime (tùy chọn):**
-   - Runtime → Change runtime type → T4 GPU (nếu notebook cần xử lý ảnh nặng hoặc đào tạo mô hình).
-
-7. **Chạy notebook:**
+3. **Chạy notebook:**
    - Chạy từng ô lần lượt (Shift+Enter) hoặc tất cả (Runtime → Run all).
 
 ---
@@ -92,13 +77,7 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
 
 **Các bước:**
 
-1. **Clone hoặc tải repo:**
-   ```bash
-   git clone https://github.com/thngoc17/Data-Mining---Lab-1.git
-   cd "Data Mining - Lab 1"
-   ```
-
-2. **Tạo môi trường ảo (PowerShell - Windows):**
+1. **Tạo môi trường ảo (PowerShell - Windows):**
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
@@ -116,23 +95,23 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
    source venv/bin/activate
    ```
 
-3. **Cài đặt phụ thuộc:**
+2. **Cài đặt phụ thuộc:**
    ```bash
    pip install --upgrade pip
    pip install requirements.txt
    ```
 
-4. **Chuẩn bị dữ liệu:**
+3. **Chuẩn bị dữ liệu:**
    - Tải dữ liệu từ Google Drive hoặc nguồn khác (xem `docs/Report.pdf` để biết chi tiết).
    - Tạo thư mục `data/` trong thư mục gốc và đặt dữ liệu vào đó.
    - Cập nhật đường dẫn trong notebook (thường ở ô đầu tiên).
 
-5. **Mở Jupyter:**
+4. **Mở Jupyter:**
    ```bash
    jupyter notebook
    ```
 
-6. **Chạy notebook:**
+5. **Chạy notebook:**
    - Mở notebook từ thư mục `notebooks/`.
    - Chạy từng ô lần lượt (Shift+Enter) hoặc tất cả (Cell → Run All).
 
@@ -140,10 +119,8 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
 
 ## 📊 Ghi chú về dữ liệu
 
-- **Kích thước:** Dataset ảnh khá lớn (chi tiết xem trong `notebooks/02_preprocessing_image.ipynb`).
+- **Kích thước:** Dataset ảnh khá lớn (chi tiết xem trong `notebooks/01_EDA_image.ipynb ` và `notebooks/02_preprocessing_image.ipynb`).
 - **Vị trí:** Dữ liệu đã processed được lưu trong `data/processed`.
-
-
 
 ---
 
@@ -161,7 +138,7 @@ Tuy nhiên, các notebook có thể chạy độc lập nếu có dữ liệu đ
 
 ---
 
-## 📖 Kết quả chính
+## Kết quả chính
 
 - Các phát hiện chính, biểu đồ và bảng phân tích được tóm tắt trong các markdown của chính notebook phần đó.
 - Để xem chi tiết con số, hình ảnh và kết luận, chạy các notebook tương ứng.
@@ -171,5 +148,6 @@ Tuy nhiên, các notebook có thể chạy độc lập nếu có dữ liệu đ
 ## 🔗 Liên kết quan trọng
 
 - **Google Drive (dữ liệu & Colab notebooks):** https://drive.google.com/drive/folders/120mvzOAyvNwa2f8BWuBUFNoxExIrRcEU?usp=drive_link
-- **Báo cáo chi tiết:** `docs/Report.pdf`
+- **Github dành cho Lab 1:** https://github.com/thngoc17/Data-Mining---Lab-1
+- **Báo cáo phân công công việc:** `docs/Report.pdf`
 
