@@ -95,23 +95,29 @@ Phân công công việc cụ thể của nhóm trong `docs/Report.pdf`.
    source venv/bin/activate
    ```
 
-2. **Cài đặt phụ thuộc:**
+2. **Cài đặt thư viện:**
    ```bash
-   pip install --upgrade pip
-   pip install requirements.txt
+   python -m pip install --upgrade pip
+   pip install -r requirements.txt
    ```
 
-3. **Chuẩn bị dữ liệu:**
-   - Tải dữ liệu từ Google Drive hoặc nguồn khác (xem `docs/Report.pdf` để biết chi tiết).
+3. Cài Jupyter
+   ```bash
+   pip install notebook
+   ```
+
+4. **Chuẩn bị dữ liệu:**
+   
+   - [Tải dữ liệu từ Google Drive](https://drive.google.com/drive/folders/14GoINVd0cxfCABkVa8mEy2MutaW2tmsH?usp=sharing)
    - Tạo thư mục `data/` trong thư mục gốc và đặt dữ liệu vào đó.
    - Cập nhật đường dẫn trong notebook (thường ở ô đầu tiên).
 
-4. **Mở Jupyter:**
+5. **Mở Jupyter:**
    ```bash
    jupyter notebook
    ```
 
-5. **Chạy notebook:**
+6. **Chạy notebook:**
    - Mở notebook từ thư mục `notebooks/`.
    - Chạy từng ô lần lượt (Shift+Enter) hoặc tất cả (Cell → Run All).
 
